@@ -57,12 +57,9 @@ void main() {
       print("Intese el punto Y" + i.toString());
       var puntoY = stdin.readLineSync();
 
-
-
       Coordenadas.add(new punto(X: int.parse(puntoX), Y: int.parse(puntoY)));
 
     }
-
 
     print("Desea continuar?");
     print("Escriba Si ó No");
@@ -70,7 +67,6 @@ void main() {
     OpcionContinuar = stdin.readLineSync();
 
   }
-
 
   print(Coordenadas.length);
 
@@ -81,13 +77,7 @@ void main() {
           + Coordenadas[CoorD].cuadrante()
           );
 
-    
-    
-  
   }
-          
- 
-
 
   //puntooo.add(new punto(X:3,Y:2));
 
