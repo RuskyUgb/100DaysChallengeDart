@@ -1,0 +1,3 @@
+ Cantidad de compra: 600.0
+ Descuento aplicado: 90.0
+ Total a pagar de la compra: 510.0
