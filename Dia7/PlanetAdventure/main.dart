@@ -1,4 +1,6 @@
 import 'SalasFueraCastillo/HabitacionesExterior.dart';
+import 'HabitacionesCastillo/HabiCastillos.dart';
+
 import 'SalasFueraCastillo/StartRoom.dart';
 import 'SalasFueraCastillo/Garden.dart';
 import 'SalasFueraCastillo/SecretRoom.dart';
@@ -11,7 +13,7 @@ void main(){
     bool KeyInHand = true;
 
    
-//Instancias    
+//Instancias  HabitacionesExterior
 
     List<ExteriorHabitaciones> ExteriorRooms = [
       new ExteriorHabitaciones("Salon Inicio", 1),
@@ -22,6 +24,21 @@ void main(){
     var inicioRoom = new startRoom(ExteriorRooms[0].getNom, ExteriorRooms[0].getNumSala);
     var Garden = new jardin(ExteriorRooms[1].getNom,ExteriorRooms[1].getNumSala);
     var secret = new SecretRoom(ExteriorRooms[2].getNom, ExteriorRooms[2].getNumSala);
+//Fin Instancias
+//****************************************** */
+
+
+//Instancias HabitacionesInterior
+    List<HabitacionCastillo> CastleRooms = [
+      new HabitacionCastillo("Armamento", 1,"Scottcito"),
+      new HabitacionCastillo("Cocina", 2,"Rito"),
+      new HabitacionCastillo("Cerveceria", 3, "Capo"),
+      new HabitacionCastillo("Salon de baile", 4, "Goto")
+
+    ];
+
+    
+
 //Fin Instancias
 
     //Mensaje Bienvenida
@@ -73,8 +90,8 @@ void main(){
           HabitacionExterior = stdin.readLineSync().toLowerCase();
           break;
       case "castillo":
-         HabitacionExterior = "";
-          print("B seleccioando");
+          HabitacionInterior = "castillo";
+
           HabitacionExterior = "exitBucle";
           break;
       case "sala secreta":
@@ -103,13 +120,19 @@ void main(){
           HabitacionExterior = stdin.readLineSync().toLowerCase();
           break;
       case "sala de armamento":
-
+          HabitacionInterior = "armamento";
 
           HabitacionExterior = "exitBucle";
           break;
       default:
           break;
           
+   }
+
+   switch(HabitacionInterior){
+     case "armamento":
+          print("Armamento");
+          break;
    }
 
   };
