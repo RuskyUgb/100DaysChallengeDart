@@ -1,21 +1,27 @@
 import 'SalasFueraCastillo/HabitacionesExterior.dart';
 import 'SalasFueraCastillo/StartRoom.dart';
-
+import 'SalasFueraCastillo/Garden.dart';
+import 'SalasFueraCastillo/SecretRoom.dart';
 import 'dart:io';
 
 
 void main(){
 
-    
+    var HabitacionExterior,HabitacionInterior;
+    bool KeyInHand = true;
+
+   
 //Instancias    
 
     List<ExteriorHabitaciones> ExteriorRooms = [
       new ExteriorHabitaciones("Salon Inicio", 1),
-      new ExteriorHabitaciones("Jardin", 2)
+      new ExteriorHabitaciones("Jardin", 2),
+      new ExteriorHabitaciones("Sala secreta", 3)
     ];
 
     var inicioRoom = new startRoom(ExteriorRooms[0].getNom, ExteriorRooms[0].getNumSala);
-
+    var Garden = new jardin(ExteriorRooms[1].getNom,ExteriorRooms[1].getNumSala);
+    var secret = new SecretRoom(ExteriorRooms[2].getNom, ExteriorRooms[2].getNumSala);
 //Fin Instancias
 
     //Mensaje Bienvenida
@@ -37,15 +43,76 @@ void main(){
     ExteriorRooms.forEach((namesRooms){
       print(namesRooms.getNom.toString().toUpperCase());
     });
-    print("Pulsa enter para continuar");
-    stdin.readLineSync();
+
+
+    inicioRoom.MostrarSalida(); 
+    inicioRoom.ShowName();
+
+    print('A que habitacion quiere ir? \na)Jardin \nb)Castillo');
+    HabitacionExterior = stdin.readLineSync().toLowerCase();
+
     //Habitaciones.add(SalonInicio);
-    ExteriorRooms[0].ShowName();
+    
     print(".\t.\t.");
     print(".\t.\t.");
-    inicioRoom.MostrarSalida();
+    
 
     //El jardin
-   
+
+  while(HabitacionExterior != "exitBucle"){
+
+   switch(HabitacionExterior){
+     case "jardin":
+          HabitacionExterior = "";
+          Garden.ShowName();
+          Garden.MostrarPresentacion();
+          print("");
+          Garden.MostrarSalida();
+          print("");
+          print("Ingrese el nombre de la sala donde se quiere dirigir");
+          HabitacionExterior = stdin.readLineSync().toLowerCase();
+          break;
+      case "castillo":
+         HabitacionExterior = "";
+          print("B seleccioando");
+          HabitacionExterior = "exitBucle";
+          break;
+      case "sala secreta":
+          HabitacionExterior = "";
+          if(KeyInHand){
+            
+            secret.ShowName();
+            secret.NombreJefe();
+            secret.MostrarSalida();
+            print("Ingrese el nombre de la sala donde se quiere dirigir");
+            HabitacionExterior = stdin.readLineSync().toLowerCase();
+          }else{
+            print("No puedes pasar sin la planta especial");
+            secret.MostrarSalida();
+            print("Ingrese el nombre de la sala donde se quiere dirigir");
+            HabitacionExterior = stdin.readLineSync().toLowerCase();
+            
+          }
+          break;
+      case "inicio":
+          inicioRoom.MostrarSalida(); 
+          inicioRoom.ShowName();
+
+          print("Ingrese el nombre de la sala donde se quiere dirigir");
+          print('A que habitacion quiere ir? \na)Jardin \nb)Castillo');
+          HabitacionExterior = stdin.readLineSync().toLowerCase();
+          break;
+      case "sala de armamento":
+
+
+          HabitacionExterior = "exitBucle";
+          break;
+      default:
+          break;
+          
+   }
+
+  };
+  print("Bucle terminado");
 
 }
