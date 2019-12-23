@@ -28,4 +28,10 @@ class HabitacionCastillo{
 
   get getJefe => this._jefe;
 
+  set setNumSala(int numSala) => this._numeroSala = _numeroSala;
+
+  get getNumSala => this._numeroSala;
+
+  
+
 }
