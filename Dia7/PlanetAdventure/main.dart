@@ -73,14 +73,13 @@ void main(){
           HabitacionExterior = stdin.readLineSync().toLowerCase();
           break;
       case "castillo":
-         HabitacionExterior = "";
+          HabitacionExterior = "";
           print("B seleccioando");
           HabitacionExterior = "exitBucle";
           break;
       case "sala secreta":
           HabitacionExterior = "";
           if(KeyInHand){
-            
             secret.ShowName();
             secret.NombreJefe();
             secret.MostrarSalida();
@@ -103,8 +102,6 @@ void main(){
           HabitacionExterior = stdin.readLineSync().toLowerCase();
           break;
       case "sala de armamento":
-
-
           HabitacionExterior = "exitBucle";
           break;
       default:
