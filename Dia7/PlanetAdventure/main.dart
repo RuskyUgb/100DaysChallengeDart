@@ -1,4 +1,3 @@
-
 import 'HabitacionesCastillo/Armamento.dart';
 import 'HabitacionesCastillo/BaileRoom.dart';
 import 'HabitacionesCastillo/Cerveceria.dart';
@@ -14,8 +13,8 @@ import 'dart:io';
 
 void main() {
   var HabitacionEleccion;
-  bool KeyInHand = true;
-
+  bool plantInHand = false;
+  int numHabitacionExterior;
 //Instancias  HabitacionesExterior
 
   List<ExteriorHabitaciones> ExteriorRooms = [
@@ -80,6 +79,7 @@ void main() {
   inicioRoom.ShowName();
 
   print('A que habitacion quiere ir? \na)Jardin \nb)Pasillo');
+  numHabitacionExterior = 1;
   HabitacionEleccion = stdin.readLineSync().toLowerCase();
 
   //Habitaciones.add(SalonInicio);
@@ -91,8 +91,8 @@ void main() {
 
   while (HabitacionEleccion != "exitBucle") {
     switch (HabitacionEleccion) {
-
       case "jardin":
+        numHabitacionExterior = 2;
         Garden.ShowName();
         Garden.MostrarPresentacion();
         print("");
@@ -102,6 +102,7 @@ void main() {
         HabitacionEleccion = stdin.readLineSync().toLowerCase();
         break;
       case "pasillo":
+        numHabitacionExterior=0;//Set para que  me deje entrar al pasillo
         PasilloCastle.MensajeBienvenida();
         PasilloCastle.MostrarSalasAdjuntas();
         print("Ingrese el nombre de la sala donde se quiere dirigir");
@@ -109,7 +110,8 @@ void main() {
         break;
       case "sala secreta":
         HabitacionEleccion = "";
-        if (KeyInHand) {
+        numHabitacionExterior = 3;
+        if (plantInHand) {
           secret.ShowName();
           secret.NombreJefe();
           secret.MostrarSalida();
@@ -124,6 +126,7 @@ void main() {
         break;
       case "inicio":
         HabitacionEleccion = "";
+        numHabitacionExterior = 1;
         inicioRoom.MostrarSalida();
         inicioRoom.ShowName();
 
@@ -132,43 +135,79 @@ void main() {
         HabitacionEleccion = stdin.readLineSync().toLowerCase();
         break;
       case "sala de armamento":
-        HabitacionEleccion = "";
-        ArmamentoCastle.ShowNameRoom();
-        ArmamentoCastle.MostrarSaludoJefe();
-        ArmamentoCastle.MostrarSalida();
+        if (numHabitacionExterior == 1 || numHabitacionExterior == 3) {
+          print("No puedes saltar a otra habitacion");
+          print("Ingrese el nombre de la sala donde se quiere dirigir");
+          HabitacionEleccion = stdin.readLineSync().toLowerCase();
+        } else if (numHabitacionExterior == 2) {
+          HabitacionEleccion = "";
+          numHabitacionExterior == 0;
+          ArmamentoCastle.ShowNameRoom();
+          ArmamentoCastle.MostrarSaludoJefe();
+          ArmamentoCastle.MostrarSalida();
 
-        print("Ingrese el nombre de la sala donde se quiere dirigir");
-        HabitacionEleccion = stdin.readLineSync().toLowerCase();
-        
+          print("Ingrese el nombre de la sala donde se quiere dirigir");
+          HabitacionEleccion = stdin.readLineSync().toLowerCase();
+        }
+
         break;
       case "cocina":
+        if (numHabitacionExterior == 1 ||
+            numHabitacionExterior == 2 ||
+            numHabitacionExterior == 3) {
+          print("No puedes saltar a otra habitacion");
+          print("Ingrese el nombre de la sala donde se quiere dirigir");
+          HabitacionEleccion = stdin.readLineSync().toLowerCase();
+        } else {
           CocinaCastle.ShowNameRoom();
           CocinaCastle.MostrarSaludoJefe();
           CocinaCastle.MostrarSalida();
 
           print("Ingrese el nombre de la sala donde se quiere dirigir");
           HabitacionEleccion = stdin.readLineSync().toLowerCase();
-          break;
+        }
+        break;
       case "cerveceria":
+        if(numHabitacionExterior == 1 ||
+          numHabitacionExterior == 2 ||
+          numHabitacionExterior == 3){
+
+          print("No puedes saltar a otra habitacion");
+          print("Ingrese el nombre de la sala donde se quiere dirigir");
+          HabitacionEleccion = stdin.readLineSync().toLowerCase();
+        }else{
           CerveceriaCastle.ShowNameRoom();
           CerveceriaCastle.MostrarSaludoJefe();
+          CerveceriaCastle.DarLlave();
+          plantInHand = true;
           CerveceriaCastle.MostrarSalida();
           print("Ingrese el nombre de la sala donde se quiere dirigir");
           HabitacionEleccion = stdin.readLineSync().toLowerCase();
-          break;
-      case "salon de baile":
-          BaileCastle.ShowNameRoom();
-          BaileCastle.MostrarSaludoJefe();
-          BaileCastle.MostrarSalida();
+        }
+        
+        break;
+      case "salon de baile": 
+      if(numHabitacionExterior == 1 ||
+          numHabitacionExterior == 2 ||
+          numHabitacionExterior == 3){
+
+          print("No puedes saltar a otra habitacion");
           print("Ingrese el nombre de la sala donde se quiere dirigir");
           HabitacionEleccion = stdin.readLineSync().toLowerCase();
-          break;
+      }else{
+        BaileCastle.ShowNameRoom();
+        BaileCastle.MostrarSaludoJefe();
+        BaileCastle.MostrarSalida();
+        print("Ingrese el nombre de la sala donde se quiere dirigir");
+        HabitacionEleccion = stdin.readLineSync().toLowerCase();
+      }
+        break;
       default:
         HabitacionEleccion = HabitacionCastillo;
         break;
     }
-    
-  };
+  }
+  ;
 
   print("Bucle terminado");
 }
