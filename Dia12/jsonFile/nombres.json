@@ -1,0 +1,14 @@
+{
+    "personas" :[
+        {
+            "nombre":"luis",
+            "apellido":"caballero",
+            "edad":53
+        },
+        {
+            "nombre":"Carmen",
+            "apellido":"Cortéz",
+            "edad":"24"
+        }
+    ]
+}
